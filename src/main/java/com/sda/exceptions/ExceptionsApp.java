@@ -6,19 +6,15 @@ import java.util.List;
 public class ExceptionsApp {
     public static void main(String[] args) throws IllegalArgumentException {
 
-try{
-        ExceptionsApp div= new ExceptionsApp();
-        System.out.println(div.divide(0.0,0.0));}
-catch (IllegalArgumentException exception){
-    System.out.println("Error message: "+exception.getMessage());
-}
+        try {
+            divide(0.0,0.0);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Error message: "+exception.getMessage());
+        }
 
-        private static void divided(String number) throws IllegalArgumentException {
-            if (y = 0) {
-                throw new InvalidArgumentException(y);
-            }
 
-            System.out.println("Hello " + y);
+
+
 
             //ArrayIndexOutOfBoundsException
             //  try{
@@ -53,8 +49,13 @@ catch (IllegalArgumentException exception){
             // ;
         }
 
+
+
+    private static void divide( double x, double y) throws IllegalArgumentException{
+
+        if(y==0){
+            throw new IllegalArgumentException(y); }
+        System.out.println(x/y);
     }
-    double divide( double x, double y){
-        return x/y;
-    }
+
 }

@@ -3,18 +3,18 @@ package com.sda.geometry;
 public abstract class FlatShape {
 
    // FlatShape shape= new FlatShape();
-    double width;
-    double height;
+    double x;
+    double y;
 
 
-    public FlatShape( double width, double height){
-        this.width=width;
-        this.height=height;
+    public FlatShape( double x, double y){
+        this.x=x;
+        this.y=y;
     }
     public void printDimension(){
         System.out.println( toString());
 
-        System.out.println(String.format("Flatshape [x,y]=[%f,%f]",width,height));
+        System.out.println(String.format("Flatshape [x,y]=[%f,%f]",x,y));
 
 
     }

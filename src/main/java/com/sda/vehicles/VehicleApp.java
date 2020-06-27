@@ -12,5 +12,15 @@ public class VehicleApp {
         vehicle.run(120);
 
 
+        Car car = new Car();
+        car.addPassenger();
+        car.run(100);
+        Road<Car> carRoad = new Road<>();
+        carRoad.addVehicle(car);
+
+        Road<Motorcycle> stringRoad = new Road<>();
+
+
+
     }
 }

@@ -29,9 +29,8 @@ public class Car extends Vehicle{
     }
 
     @Override
-    //public void run(double velocity) {
-     //   super.run(velocity);
-    //}
+   // public void run(double velocity) {
+      //  super.run(velocity); }
 
     public void run(double velocity){
         System.out.println("Car speed : "+velocity);

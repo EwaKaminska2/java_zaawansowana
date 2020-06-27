@@ -1,18 +1,16 @@
 package com.sda.exceptions;
 
 public class IllegalArgumentException extends Exception {
-    private final String illegalArg;
-    IllegalArgumentException( String  illegalArg){
-        super(String.format("Number[%s] is invalid",illegalArg));
-        this.illegalArg = illegalArg;
+    private final double invalidNumber;
+
+    IllegalArgumentException(double invalidNumber) {
+        super(String.format("Y [%s] is invalid", invalidNumber));
+        this.invalidNumber = invalidNumber;
     }
 
-    public String  getIllegalArg(){
-        return illegalArg;
-
+    public double getInvalidNumber() {
+        return invalidNumber;
     }
-
-
-    }
+}
 
 

@@ -4,6 +4,8 @@ public class AnimalsAdd {
     public static void main(String[] args) {
         Person person = new Person();
 
+        Animal dog = new Dog(); //( polimorfizm)
+
         person.setAnimal(new Dog());
         System.out.println(person.introduceAnimal());
         System.out.println(person.letsPlayAnimal());

@@ -12,7 +12,7 @@ public class Package {
     public Package(String description) {
         this.description = description;
         this.id = UUID.randomUUID().toString();
-        this.status=PackageStatus.SENT;
+     //   this.status=PackageStatus.SENT;
     }
 
 
