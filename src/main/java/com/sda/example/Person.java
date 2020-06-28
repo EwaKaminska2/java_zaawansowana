@@ -3,10 +3,11 @@ package com.sda.example;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person>{
     String name;
     String surmane;
     LocalDate dateOfBirth;
+    int hight;
 
     public String getName() {
         return name;
@@ -19,6 +20,8 @@ public class Person {
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
+    public Integer getHight(){ return hight;}
+
 
     @Override
     public String toString() {
@@ -26,8 +29,11 @@ public class Person {
                 "name='" + name + '\'' +
                 ", surmane='" + surmane + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
+                ", hight=" + hight +
                 '}';
     }
+
+
 
     public void setName(String name) {
         this.name = name;
@@ -40,10 +46,17 @@ public class Person {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public Person( String name,String surmane,LocalDate dateOfBirth){
+
+    public void setHight(int hight){this.hight = hight;}
+
+
+    public Person( String name,String surmane,LocalDate dateOfBirth,int hight){
         this.name = name;
         this.surmane=surmane;
         this.dateOfBirth=dateOfBirth;
+        this.hight = hight;
+
+
     }
 
     @Override
@@ -60,4 +73,12 @@ public class Person {
     public int hashCode() {
         return Objects.hash(name, surmane, dateOfBirth);
     }
+
+    @Override
+    public int compareTo(Person person){
+        int heightDiffrence = this.getHight()-person.getHight();
+        return heightDiffrence;
+    }
+
+
 }
