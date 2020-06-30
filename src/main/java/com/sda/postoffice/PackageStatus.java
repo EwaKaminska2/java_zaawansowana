@@ -1,72 +1,69 @@
 package com.sda.postoffice;
+import java.util.*;
 
 public enum PackageStatus {
-  //  SENT("Already sent",500){
-     //   @Override
-    //    public PackageStatus[] getNextStatuses(){
-   //         return new PackageStatus[]{TRAVELLING,LOST};
-  //      }
- //   },
- //   TRAVELLING("Is still travelling",401){
- //       @Override
- //       public PackageStatus[] getNextStatuses(){
- //           return new PackageStatus[]{COURIER,LOST};
-  //      }
- //   },
-  //  COURIER(" Courier have it",402){
-   //     @Override
-   //     public PackageStatus[] getNexStatus(){
-   //         return new PackageStatus[]{DELIVERED,RETURNED,LOST};
-   //     }
-  //  },
- //   DELIVERED( "Allready delivered",501){
- //       @Override
-   //     public PackageStatus[] getNexStatus(){
-   // //        return new PackageStatus[]{};
-  //  }},
-   // LOST(" Is lost",404) {
-   //     @Override
-   //     public PackageStatus[] getNexStatus() {
-   //         return new PackageStatus[]{};
-  // //     }
- ///   },
-  //  RETURNED(" Returned",507){
-   //     @Override
-   //     public PackageStatus[] getNexStatus() {
-   //         return new PackageStatus[]{};
-  //      }
-  //  };
+    SENT("Package sent",400) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            List<PackageStatus> list = new ArrayList<>();
+            list.add(PackageStatus.TRAVELLING);
+            list.add(PackageStatus.LOST);
+            return list;
+        }
+    },
+    TRAVELLING("Package travelling",403) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            List<PackageStatus> list = new ArrayList<>();
+            list.add(PackageStatus.COURIER);
+            list.add(PackageStatus.LOST);
+            return list;
+        }
+    },
+    COURIER("Package with courier",301) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            List<PackageStatus> list = new ArrayList<>();
+            list.add(PackageStatus.DELIVERED);
+            list.add(PackageStatus.RETURNED);
+            list.add(PackageStatus.LOST);
+            return list;
+        }
+    },
+    DELIVERED("Package delivered",500) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            return new ArrayList<>();
+        }
+    },
+    LOST("Package lost",404) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            return new ArrayList<>();
+        }
+    },
+    RETURNED("Package returned",406) {
+        @Override
+        public List<PackageStatus> getNextStatuses() {
+            return new ArrayList<>();
+        }
+    };
 
+    private final String message;
+    private final int statusCode;
 
-//private final String message;
-//private final int code;
-//private final String status;
+    PackageStatus(String message,int statusCode) {
+        this.message = message;
+        this.statusCode = statusCode;
+    }
 
-PackageStatus(){
-   // this.message=message;
-    //this.code=code;
-   // this.status = status;
-}
+    public String getMessage() {
+        return message;
+    }
 
-  // public int getCode() {
-  //  return code;
-  // }
+    public int getStatusCode() {
+        return statusCode;
+    }
 
-   // public String getMessage() {
-  //     return message;
-//}
-
-   // public String getStatus() {
-   //     return status;
-   // }
-
-   // @Override
-  //  public String toString() {
-   //    return "PackageStatus{" +
-       //        "message='" + message + '\'' +
-       //         ", code=" + code +
-     //           '}';
-   //}
-
-    //public abstract PackageStatus[] getNextStatuses{};
+    public abstract List<PackageStatus> getNextStatuses();
 }

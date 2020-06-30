@@ -1,24 +1,30 @@
 package com.sda.postoffice;
 
+import com.sun.jdi.request.InvalidRequestStateException;
+
 import java.util.UUID;
+import java.util.*;
 
 public class Package {
 
-    private String description;
-    private String id;
-
+    private final String description;
+    private final String id;
     private PackageStatus status;
 
-    public Package(String description) {
+    Package(String description) {
+        status = PackageStatus.SENT;
+        id = UUID.randomUUID().toString();
         this.description = description;
-        this.id = UUID.randomUUID().toString();
-     //   this.status=PackageStatus.SENT;
     }
 
+    void setStatus(PackageStatus status) {
 
-    public void changeStatus(PackageStatus newStatus) {
-        this.status = newStatus;
+        List<PackageStatus> list = availableStatuses();
 
+        if (!list.contains(status)) {
+            throw new InvalidRequestStateException("Cannot accept this status");
+        }
+        this.status = status;
     }
 
     public String getDescription() {
@@ -29,12 +35,20 @@ public class Package {
         return id;
     }
 
+    public PackageStatus getStatus() {
+        return status;
+    }
+
+    public List<PackageStatus> availableStatuses() {
+        return status.getNextStatuses();
+    }
+
     @Override
     public String toString() {
         return "Package{" +
                 "description='" + description + '\'' +
                 ", id='" + id + '\'' +
-                ", status=" + status +
+                ", status=" + status + " : " + status.getMessage() + " [" + status.getStatusCode() + "]" +
                 '}';
     }
 }

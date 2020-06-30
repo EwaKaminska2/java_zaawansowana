@@ -4,46 +4,36 @@ import java.util.Scanner;
 
 public class PostOfficeApp {
     public static void main(String[] args) {
-        Package socks = new Package("socks");
 
 
-
-        // wyswietl wszystkie możliwe statusy
-        PackageStatus[] statuses = PackageStatus.values();
-        System.out.println("Wszystkie statusy");
-        for(PackageStatus status:PackageStatus.values()){
-            System.out.println(status.toString());
-        }
-
-
-
-        //2. pobierz od uzytkownieka nazwe wybranego statusu
-        System.out.println("Wybierz status");
-        String choeseStatus = "SENT";
         Scanner scanner = new Scanner(System.in);
 
-        PackageStatus[] statuses1 = PackageStatus.values();
-        Package newSocks = new Package(" New Socks ");
-        switch (choeseStatus){
-            case "LOST":
-                PackageStatus.valueOf("lOST");
-                break;
-            case "TRAVELLING":
-                PackageStatus.valueOf("TRAVELLING");
-                break;
+        PackageStatus[] statuses = PackageStatus.values();
+
+        Package pack1 = new Package("Package 1");
+
+        System.out.println(pack1);
+        pack1.setStatus(PackageStatus.LOST);
+        System.out.println(pack1);
+
+
+
+        Package newPackage = new Package("New package");
+        System.out.println("Choose status");
+        for (PackageStatus status : statuses) {
+            System.out.println(status);
         }
-      //  newSocks.changeStatus(newStatus);
-        System.out.println(newSocks);
-
-        //3.Stworz obiekt wybranego statusu  lub wyswietl blad
-        //aby obsluzyc bledna nazwe zlap wyjatek rzucany przez valueOf
-       // PackageStatus newStatus = PackageStatus.valueOf(choeseStatus);
-
-
-    }
-
-
-    public void getNextStatuses(){
+        boolean correctStatus = false;
+        while (!correctStatus) {
+            String choice = scanner.nextLine();
+            try {
+                newPackage.setStatus(PackageStatus.valueOf(choice));
+                correctStatus = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.println("Wrong status - try again");
+            }
+        }
+        System.out.println(newPackage.getStatus());
 
     }
 }
